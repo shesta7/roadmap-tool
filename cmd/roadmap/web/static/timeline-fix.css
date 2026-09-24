@@ -1,0 +1,16 @@
+.timeline-point.left-edge .point-title,
+.timeline-point.left-edge .point-date,
+.timeline-point.left-edge .point-description {
+  left: -8px;
+  transform: none;
+  text-align: left;
+}
+
+.timeline-point.right-edge .point-title,
+.timeline-point.right-edge .point-date,
+.timeline-point.right-edge .point-description {
+  right: -8px;
+  left: auto;
+  transform: none;
+  text-align: right;
+}

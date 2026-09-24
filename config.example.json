@@ -1,0 +1,32 @@
+{
+  "provider": "gitea",
+  "base_url": "https://git.example.com",
+  "owner": "my-org",
+  "repository": "my-product",
+  "feature_label": "type::feature",
+  "theme": {
+    "default": "auto",
+    "light": {
+      "background": "#ffffff",
+      "surface": "#f7f8fa",
+      "text": "#1f2328",
+      "muted": "#667085",
+      "grid": "#d0d5dd",
+      "feature": "#1E88E5",
+      "milestone": "#7E57C2",
+      "closed": "#12B76A",
+      "future": "#98A2B3"
+    },
+    "dark": {
+      "background": "#0d1117",
+      "surface": "#161b22",
+      "text": "#e6edf3",
+      "muted": "#8b949e",
+      "grid": "#30363d",
+      "feature": "#58a6ff",
+      "milestone": "#bc8cff",
+      "closed": "#32D583",
+      "future": "#667085"
+    }
+  }
+}

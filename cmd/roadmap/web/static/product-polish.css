@@ -1,0 +1,393 @@
+.page-header h1 {
+  font-size: clamp(44px, 6vw, 64px);
+  font-weight: 790;
+  letter-spacing: -.055em;
+}
+
+.page-header p:not(.eyebrow) {
+  font-size: 17px;
+}
+
+.github-link {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--grid);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.github-link:hover {
+  border-color: var(--milestone);
+  color: var(--milestone);
+}
+
+.github-link svg {
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
+.roadmap-tools {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 18px;
+}
+
+.view-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.date-filter {
+  display: flex;
+  gap: 10px;
+}
+
+.date-filter label {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.date-filter input {
+  min-height: 44px;
+}
+
+.timeline-range {
+  margin: 0 0 18px;
+}
+
+.timeline-track {
+  height: 230px;
+  border-top: 0;
+}
+
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 84px;
+  right: 0;
+  left: 0;
+  border-top: 2px solid var(--future);
+}
+
+.timeline-track::after {
+  top: 80px;
+  border-color: var(--future);
+}
+
+.timeline-progress {
+  position: absolute;
+  z-index: 1;
+  top: 83px;
+  left: 0;
+  height: 2px;
+  background: var(--milestone);
+}
+
+.timeline-point {
+  top: 84px;
+  z-index: 3;
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.timeline-point .point-title,
+.timeline-point .point-description,
+.timeline-point .point-date {
+  position: absolute;
+  left: 50%;
+  width: max-content;
+  max-width: 220px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-point .point-title {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 780;
+  text-decoration: none;
+}
+
+.timeline-point .point-title:hover {
+  color: var(--milestone);
+}
+
+.timeline-point .point-description {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.timeline-point .point-date {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.timeline-point.above .point-title { bottom: 69px; }
+.timeline-point.above .point-description { bottom: 45px; }
+.timeline-point.above .point-date { bottom: 25px; }
+.timeline-point.below .point-title { top: 25px; bottom: auto; }
+.timeline-point.below .point-description { top: 49px; bottom: auto; }
+.timeline-point.below .point-date { top: 73px; bottom: auto; }
+
+.point-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 3px solid var(--background);
+  border-radius: 50%;
+  background: var(--milestone);
+  color: var(--background);
+  box-shadow: 0 0 0 2px var(--milestone);
+  transform: translate(-50%, -50%);
+}
+
+.timeline-point.current .point-dot {
+  transform: translate(-50%, -50%) scale(1.16);
+}
+
+.timeline-point.closed .point-dot {
+  background: var(--closed);
+  box-shadow: 0 0 0 2px var(--closed);
+}
+
+.timeline-point.closed .point-dot::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  margin-top: -2px;
+  border: solid var(--background);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.timeline-point.future .point-dot {
+  border: 3px solid var(--background);
+  background: var(--background);
+  box-shadow: 0 0 0 2px var(--future);
+}
+
+.timeline-point.future .point-title,
+.timeline-point.future .point-description,
+.timeline-point.future .point-date {
+  color: var(--future);
+}
+
+.issue-point {
+  position: absolute;
+  z-index: 2;
+  top: 80px;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+  border: 2px solid var(--background);
+  border-radius: 50%;
+  background: var(--feature);
+  box-shadow: 0 0 0 1px var(--feature);
+}
+
+.issue-point::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 20;
+  bottom: 18px;
+  left: 50%;
+  width: max-content;
+  max-width: 280px;
+  padding: 8px 10px;
+  transform: translateX(-50%) translateY(4px);
+  border: 1px solid var(--grid);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--text) 18%, transparent);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .14s ease, transform .14s ease;
+}
+
+.issue-point:hover::after,
+.issue-point:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.issue-point.left-edge::after {
+  left: -4px;
+  transform: translateY(4px);
+}
+
+.issue-point.left-edge:hover::after,
+.issue-point.left-edge:focus-visible::after {
+  transform: translateY(0);
+}
+
+.issue-point.right-edge::after {
+  right: -4px;
+  left: auto;
+  transform: translateY(4px);
+}
+
+.issue-point.right-edge:hover::after,
+.issue-point.right-edge:focus-visible::after {
+  transform: translateY(0);
+}
+
+.month-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.month-marker {
+  position: absolute;
+  top: 190px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.month-marker::before {
+  content: "";
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  height: 7px;
+  border-left: 1px solid var(--grid);
+}
+
+.filter-field {
+  display: grid;
+  gap: 7px;
+  width: min(440px, 100%);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.filter-field input {
+  min-height: 44px;
+  background: var(--surface);
+  font-size: 15px;
+}
+
+.milestone-card summary {
+  padding: 28px 30px;
+}
+
+.milestone-card.current {
+  border-color: color-mix(in srgb, var(--milestone) 65%, var(--grid));
+}
+
+.milestone-card.future {
+  border-style: solid;
+}
+
+.milestone-title {
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 790;
+  line-height: 1.12;
+  letter-spacing: -.035em;
+}
+
+.milestone-heading p {
+  max-width: 760px;
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  opacity: .72;
+}
+
+.milestone-meta strong {
+  font-size: 15px;
+}
+
+.git-link {
+  margin-top: 5px;
+  color: var(--milestone);
+  font-size: 12px;
+  font-weight: 720;
+  text-decoration: none;
+}
+
+.issue-due {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.issue-row {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.issue-title {
+  font-size: 15.5px;
+}
+
+.no-results {
+  margin: 0;
+  padding: 28px;
+  border: 1px dashed var(--grid);
+  border-radius: 14px;
+  color: var(--muted);
+  text-align: center;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  .roadmap-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .date-filter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .roadmap-tools button,
+  .filter-field {
+    width: 100%;
+  }
+
+  .view-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .view-actions #detailsBtn {
+    grid-column: 1 / -1;
+  }
+
+  .milestone-card summary {
+    padding: 22px 20px;
+  }
+}
