@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Product roadmap</title>
   <link rel="stylesheet" href="/static/roadmap.css">
-  <link rel="stylesheet" href="/static/timeline-fix.css">
   <link rel="stylesheet" href="/static/product-polish.css">
 </head>
 <body>
@@ -17,35 +16,52 @@
         <p id="subtitle">Milestones and planned work</p>
       </div>
       <div class="header-actions">
-        <a class="github-link" href="https://github.com/shesta7/roadmap-tool" target="_blank" rel="noopener noreferrer" aria-label="Open roadmap-tool on GitHub" title="Open roadmap-tool on GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.94 10.94 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.78 1.06.78 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
-        </a>
+        <label class="project-switcher">Project
+          <select id="projectSwitcher" aria-label="Active project"></select>
+        </label>
         <span id="connection" class="connection">Not connected</span>
-        <button id="themeBtn" type="button">Theme: auto</button>
-        <button id="settingsBtn" class="primary" type="button">Settings</button>
       </div>
     </header>
 
     <div id="notice" class="notice" hidden></div>
     <div id="error" class="error" hidden></div>
-    <section id="timeline" class="timeline" aria-label="Milestone timeline"></section>
-    <div class="roadmap-tools">
+    <div class="roadmap-toolbar">
       <label class="filter-field">
-        <span>Filter roadmap</span>
-        <input id="filterInput" type="search" placeholder="Milestone, description, or issue" autocomplete="off">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <span class="visually-hidden">Filter roadmap</span>
+        <input id="filterInput" type="search" placeholder="Filter milestones or features" autocomplete="off">
       </label>
-      <div class="date-filter" role="group" aria-label="Timeline date range">
-        <label>From <input id="dateFrom" type="date"></label>
-        <label>To <input id="dateTo" type="date"></label>
-      </div>
-      <div class="view-actions">
-        <button id="issuesToggleBtn" type="button">Issue points: shown</button>
-        <button id="monthsToggleBtn" type="button">Months: shown</button>
-        <button id="detailsBtn" type="button">Show all details</button>
-      </div>
+      <details class="view-options">
+        <summary><span id="rangeLabel">Timeline range</span><span aria-hidden="true">⚙</span></summary>
+        <div class="view-menu">
+          <div class="date-filter" role="group" aria-label="Timeline date range">
+            <label>From <input id="dateFrom" type="date"></label>
+            <label>To <input id="dateTo" type="date"></label>
+          </div>
+          <label class="check-row"><input id="overviewToggle" type="checkbox"> Overview mode</label>
+          <label class="check-row"><input id="issuesToggle" type="checkbox"> Feature date points</label>
+          <label class="check-row"><input id="monthsToggle" type="checkbox"> Month scale</label>
+        </div>
+      </details>
     </div>
+    <section id="timeline" class="timeline" aria-label="Milestone timeline"></section>
     <p id="noResults" class="no-results" hidden>No milestones match this filter.</p>
-    <section id="milestones" class="milestones" aria-live="polite"></section>
+    <section id="milestoneDetails" class="milestone-detail" aria-live="polite" hidden></section>
+
+    <footer class="app-footer">
+      <span>roadmap-tool</span>
+      <nav class="footer-actions" aria-label="Application links and settings">
+        <a class="icon-button" href="https://github.com/shesta7/roadmap-tool" target="_blank" rel="noopener noreferrer" aria-label="Open roadmap-tool on GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.94 10.94 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.78 1.06.78 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+        </a>
+        <button id="themeBtn" class="icon-button" type="button" aria-label="Change theme" title="Theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <button id="settingsBtn" class="icon-button" type="button" aria-label="Open settings" title="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-2.83 2.83-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21h-4v-.17a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06-2.83-2.83.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3v-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06L7.04 4.3l.06.06A1.65 1.65 0 0 0 8.92 4a1.65 1.65 0 0 0 1-1.51V2h4v.49A1.65 1.65 0 0 0 14.92 4a1.65 1.65 0 0 0 1.82-.33l.06-.06 2.83 2.83-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21v4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+        </button>
+      </nav>
+    </footer>
   </main>
 
   <dialog id="settingsDialog">
@@ -59,8 +75,33 @@
       </div>
 
       <fieldset>
-        <legend>Repository</legend>
+        <legend>Project library</legend>
+        <div class="library-row">
+          <label>Profile
+            <select id="profileSelect"></select>
+          </label>
+          <div class="library-actions">
+            <button id="newProfileBtn" type="button">New</button>
+            <button id="duplicateProfileBtn" type="button">Duplicate</button>
+            <button id="deleteProfileBtn" class="danger" type="button">Delete</button>
+          </div>
+        </div>
+        <label>Profile name <input name="project_name" required></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Connection</legend>
+        <div class="library-row">
+          <label>Saved connection
+            <select name="connection_id"></select>
+          </label>
+          <div class="library-actions">
+            <button id="newConnectionBtn" type="button">New connection</button>
+            <button id="deleteConnectionBtn" class="danger" type="button">Delete connection</button>
+          </div>
+        </div>
         <div class="form-grid">
+          <label>Connection name <input name="connection_name" required></label>
           <label>Provider
             <select name="provider">
               <option value="github">GitHub</option>
@@ -69,6 +110,13 @@
             </select>
           </label>
           <label>Base URL <input name="base_url" placeholder="https://api.github.com"></label>
+        </div>
+        <p class="help">A connection and its token can be shared by several project profiles.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Repository</legend>
+        <div class="form-grid">
           <label>Owner or organization <input name="owner" required></label>
           <label>Repository <input name="repository" required></label>
           <label>Issue label <input name="feature_label" required></label>
@@ -83,13 +131,27 @@
       </fieldset>
 
       <fieldset>
+        <legend>Roadmap appearance</legend>
+        <div class="form-grid appearance-grid">
+          <label>Timeline width, px <input name="timeline_width" type="number" min="720" max="2400" step="20" required></label>
+          <label>Timeline height, px <input name="timeline_height" type="number" min="140" max="280" step="2" required></label>
+          <label>Milestone diameter, px <input name="milestone_size" type="number" min="12" max="30" required></label>
+          <label>Selected ring, px <input name="selected_ring" type="number" min="1" max="8" required></label>
+          <label>Label width, px <input name="label_width" type="number" min="120" max="360" step="10" required></label>
+          <label>Label font, px <input name="label_font_size" type="number" min="10" max="20" required></label>
+          <label>Feature row height, px <input name="feature_row_height" type="number" min="40" max="80" step="2" required></label>
+        </div>
+        <p class="help">Applied per project. Larger timeline widths add horizontal space between milestones.</p>
+      </fieldset>
+
+      <fieldset>
         <legend>Colors</legend>
         <div id="colors" class="color-groups"></div>
       </fieldset>
 
       <fieldset>
         <legend>Access token</legend>
-        <p class="help">Stored locally in a separate file. It is never returned by the API or included in exports.</p>
+        <p class="help">Saved for the selected connection in <code>secrets.json</code>. It is never returned by the API or included in library exports.</p>
         <div class="token-row">
           <input id="tokenInput" type="password" autocomplete="off" placeholder="Paste a token">
           <button id="connectBtn" type="button">Save token</button>

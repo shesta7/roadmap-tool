@@ -1,6 +1,10 @@
+.git
+.gitignore
 .DS_Store
 config.json
 secrets.json
 token
 token-gitlab
+dist
 roadmap-tool
+README.md

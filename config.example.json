@@ -1,32 +1,66 @@
 {
-  "provider": "gitea",
-  "base_url": "https://git.example.com",
-  "owner": "my-org",
-  "repository": "my-product",
-  "feature_label": "type::feature",
-  "theme": {
-    "default": "auto",
-    "light": {
-      "background": "#ffffff",
-      "surface": "#f7f8fa",
-      "text": "#1f2328",
-      "muted": "#667085",
-      "grid": "#d0d5dd",
-      "feature": "#1E88E5",
-      "milestone": "#7E57C2",
-      "closed": "#12B76A",
-      "future": "#98A2B3"
-    },
-    "dark": {
-      "background": "#0d1117",
-      "surface": "#161b22",
-      "text": "#e6edf3",
-      "muted": "#8b949e",
-      "grid": "#30363d",
-      "feature": "#58a6ff",
-      "milestone": "#bc8cff",
-      "closed": "#32D583",
-      "future": "#667085"
+  "version": 2,
+  "active_project_id": "product",
+  "connections": [
+    {
+      "id": "git-main",
+      "name": "Company Gitea",
+      "provider": "gitea",
+      "base_url": "https://git.example.com"
     }
-  }
+  ],
+  "projects": [
+    {
+      "id": "product",
+      "name": "My Product",
+      "connection_id": "git-main",
+      "owner": "my-org",
+      "repository": "my-product",
+      "feature_label": "type::feature",
+      "theme": {
+        "default": "auto",
+        "light": {
+          "background": "#ffffff",
+          "surface": "#f7f8fa",
+          "text": "#1f2328",
+          "muted": "#667085",
+          "grid": "#d0d5dd",
+          "feature": "#1E88E5",
+          "milestone": "#7E57C2",
+          "current": "#344054",
+          "closed": "#12B76A",
+          "future": "#98A2B3"
+        },
+        "dark": {
+          "background": "#0d1117",
+          "surface": "#161b22",
+          "text": "#e6edf3",
+          "muted": "#8b949e",
+          "grid": "#30363d",
+          "feature": "#58a6ff",
+          "milestone": "#bc8cff",
+          "current": "#e6edf3",
+          "closed": "#32D583",
+          "future": "#667085"
+        }
+      },
+      "appearance": {
+        "timeline_width": 1120,
+        "timeline_height": 178,
+        "milestone_size": 15,
+        "selected_ring": 2,
+        "label_width": 210,
+        "label_font_size": 13,
+        "feature_row_height": 49
+      }
+    },
+    {
+      "id": "platform",
+      "name": "Platform",
+      "connection_id": "git-main",
+      "owner": "my-org",
+      "repository": "platform",
+      "feature_label": "type::feature"
+    }
+  ]
 }
